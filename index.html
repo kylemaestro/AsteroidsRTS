@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Asteroids RTS</title>
+    <!-- CheerpJ: WebAssembly JVM that runs the original Java 8 applet in-browser -->
+    <script src="https://cjrtnc.leaningtech.com/4.3/loader.js"></script>
+    <style>
+      body {
+        background: #000;
+        color: #fff;
+        font-family: system-ui, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 16px;
+      }
+      h1 { margin: 8px 0; }
+      .applet-wrap {
+        display: inline-block;
+        border: 1px solid #333;
+        background: #000;
+        min-width: 1280px;
+        min-height: 720px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Asteroids RTS</h1>
+    <p>An RTS spin-off of <b>Dinner's on You!</b></p>
+
+    <div class="applet-wrap">
+      <!-- CheerpJ scans for <applet> tags and runs them via the WASM JVM -->
+      <applet archive="AsteroidsRTS.jar" code="AsteroidsRTS" width="1280" height="720"></applet>
+    </div>
+
+    <script>
+      // Java 8 is the default and is required for applet support.
+      cheerpjInit();
+    </script>
+  </body>
+</html>
