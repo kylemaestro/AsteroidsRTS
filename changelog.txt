@@ -1,0 +1,319 @@
+AsteroidsRTS Devlog key
+ - List all changes with #
+ - List notes, problems, etc. with £ and state why a £ is used
+
+Asteroids RTS Initial 0.1.0
+ # Added changelog.txt to track game changes/bugs
+ # Added Animation.java to handle drawing of various animations (explosions, etc;)
+ # Cleaned up class structures
+ # Renamed several classes to avoid later confusion (Account != networking, etc;)
+ # Slightly modified main class header
+
+Asteroids RTS Intial 0.2.1
+ # Implemented code for window and star generation
+ # Ported over Cameron's completed classes (Turret, Shot, Wall, Target, Account)
+
+Asteroids RTS Intial 0.2.2
+ # Changed version number to 0.2.2
+
+Asteroids RTS Intial 0.2.3
+ # Eliminated several instances of hardcoding in star generator and window/applet sizing
+ # Changes several class names back to originals
+ # Implemented Cameron's variable/object arraylist of death
+
+Asteroids RTS Intial 0.2.4
+ # Collision detection for walls
+ # Seperate methods for all objects' collision detections
+ # Added kill() method to easily remove shots from shot array
+ # Added shoot() method for structures and ships to easily subtract 1 point of health
+ # DrawTargets developer mode implemented
+ # Turret(deployable), wall, and target test objects
+
+Asteroids RTS Intial 0.2.5
+ £ Bug: Shots are not displaying or moving
+ £ Problem: I can't calculate the freaking centerpoint of a wall for the target!!!
+ £ Problem: I have no idea how to write the updateTargets() method or how to bind targets to moving objects
+ £ Bug: the blinking function on targets does not work anymore
+ £ Problem: Wall.java and AsteroidsRTS.java are now beyond usage
+ £ Note: Shots will need to be completely redone with an ArrayList
+ £ Bug: Shot test objects are not functional
+ £ Note: all entities that will have bound targets will need methods to return their centroid, where the target will be
+
+Asteroids RTS Intial 0.2.6
+ # Graphics beautification
+ # Walls now look better
+ # Shots are now in an arrayList
+ £ Future refrence: WASD to pan the camera, mouse to control game
+ # Implemented the BASIC destroyer in Ship.java with no functionality
+ # Implemented the mouseListener and mouseMotionListener
+
+Asteroids RTS Intial 0.2.7
+ # Added selection boolean to ships
+ £ Problem: Walls cannot be selected properly due to a lack of a centerpoint
+ # Left click can now select and de-select ships
+ # Wheel click can now create ships
+ # While a ship is selected, its waypoint can be placed with right click
+ # Waypoints are only visible when their respective ship is selected
+
+Asteroids RTS Intial 0.2.8
+ # Implemented the displayVersion devmode in the bottom left corner of the window
+ # Implemented ship movement for an unlimited number of ships
+ # Reformatted (NOT CLEANED) old method from dinner to work with RTS
+ £ Interesting behavior: Ships actually accelerate and decelerate, instead of the movement in dinner
+ # When selected, ships now connect to their waypoint with a line
+ £ Problem: Clicking on overlapping ships selects both ships. When the player places a waypoint, it only pertains to the ship farther in the arrayList
+
+Asteroids RTS Intial 0.2.9
+ # Targets no longer blink...that was a bad idea
+ # Keys 1 and 2, both on the numpad and the keyboard, can be used to toggle teams
+ # Both teams' ships can be selected and their waypoints placed
+ # Completed the updateTargets() method that binds targets to destroyers
+ # Both teams' ships now move, both under the command of the player
+
+Asteroids RTS Intial 0.3.0
+ # Whether or not ships stop instantly can be changed with a boolean at the top of the main class....(Kyle this must be resolved eventually)
+ # Turrets bound to ships are in a seperate arrayList than those bound to bases, freestanding, etc.  shipTurretRedList and turretRedList respectively
+ # numShotsOne and numShotsTwo have been removed
+ £ Problem: Accuracy is calculated infinately, and "angle" is constantly changing. Intstead, it needs to be calculated only each time the turret shoots
+ # Stars no longer draw on top of ships and objects
+ # TurretTarget methods CLEANED UP and functional for ship turrets; turrets will aim at targets
+ # Ship turrets shoot successfully
+ £ Mystery: Unresolved issue with the program crashing when live shots reach the edge of the MAP, unknown whether this still happens
+ # Implemented drawAllTurrets devmode
+
+Asteroids RTS Intial 0.3.1
+ # Added in smooth map panning and rudimentary zoom //Note: Zoom is disabled currently as it messes with the mouse positions. Everything works fine if you stay unzoomed in/out.
+ # Added chunk class and implemented in map sizing/star generation
+ £ Problem: Because the amount of stars depends on the amount of chunks, the game lags significantly when large numbers of chunks are loaded
+ £ Problem: Star generator is unsalvageable, will have to be recreated from scratch and use chunk system.
+ £ Problem: Chunks are not yet actually placed in a grid, but rather all on top of each other starting from (0, 0)
+ £ Problem: Ships cannot travel outside of the original window bounds
+ £ Problem: Window based mouse position and map based map positions differ when zoomed in/out
+ # Implemented both drawChunks and displayMouseCoordinates dev modes
+ # Organized main method and added headers to all major methods/method collections
+ # Changed wall graphic to be more asteroidsy and less barn doorish
+ # Changed ship fill color from white to black, effectively making the game theme look like the original Asteroids arcade game. Subject to change.
+ # Set instantShipStops to false (Your move, Cameron)
+ # Cleaned up Mouse/Keyboard listener methods and added hotkeys to enable/disable certain devmodes (uses function keys)
+
+Asteroids RTS Intial 0.3.1.1
+ # Fixed wall collision check
+ # Walls can now be destroyed correctly
+ £ Bug: Turrets will only shoot at the most recently placed target in range. If that target is not in range, they simply don't shot
+ # Implemented ship collision check
+ # Ships can now be destroyed correctly
+ # Accuracy is now calculated each time a turret shoots, not indefinetely. This will reduce lag significantly
+ £ Problem: Shots are drawn on top of all other objects, but this will not be easy to fix due to the buffered image
+ £ Bug: Once the target is destroyed and there are no more targets to be shot at, turrets keep fireing at the spot where the target was before it was destroyed
+ # Changed wall hitbox to polygon
+ # Implemented correct loops to draw objects
+
+Asteroids RTS Intial 0.3.1.2
+ #Combination of 0.3.1 versions
+ £ Bug: Shots do not function outside of original applet window area
+ # The game no longer crashes when a selected ship is destroyed
+
+Asteroids RTS Intial 0.3.2
+ # Implemented the textureMode static variable to settle graphics disputes in the future
+ # Implemented doInstantStarts to determine whether or not to accelerate
+ # Implemented the tier 1 ship
+ # Added seperate method to construct tier 1 ships with their respective objects
+ # Numpad 0 can be used to create a tier 1 ship at the mouse's location
+ £ Problem: The framerate might cause a ship going at fast speeds to overshoot its waypoint
+ £ Bug: The mouse coordinates are not always accurate. Placing a ship at different locations results in different proximity to the mouse
+
+Asteroids RTS Intial 0.3.3
+ # Numpad 0 is now used to toggle the teams
+ # The number buttons on the top of the keyboard can also be used to place ships, to allow compatibility for laptops
+ # The health of a selected ship is displayed by text
+ # Implemented healers for both art styles
+ # Healers draw a green beam to the allied ship they target
+ # Button 3 creates a wall, no rotation and 5 hitpoints
+ # Button 4 creates a healer with 8 hitpoints
+ # Implemented collision detection for healers
+ # Bug fix: Turrets no longer remain shooting at the spot where their target died
+ # TurretTarget has been refined/elongated and turrets can now have their own individual targets
+ # Turrets now stick with their target unitl it's destroyed. No more shooting at the most recent target
+ # Turrets now correctly respond to a target going outside their range
+ £ BUG!: When a ship is destroyed, there is a chance it will crash the game. What happens is that the removeShip method
+ 	     sets the target of the turret that destroyed the ship back to an unusable value. This can happen while the program
+ 	     is at any point through the shipTurretTargetRed method. If a ship is destroyed at the exact moment that the code
+ 	     is running at line 1263, the game will crash.
+ £ Unfinished: Healer targeting is all messed up and glitchy
+ £ Unfinished: Turret target methods are not functional
+
+Asteroids RTS Intial 0.3.3.1
+ # Bug fix: "Health of selection" message now translates with the applet window
+ # Bug fix: Objects created with key events now correctly place themselves where the mouse is located
+ # Turret targeting has been fixed and has no known bugs...yet
+ # Ships can now be overhealed 5 points by a healer (Default health = health + 5 in the constructor)
+ # Healer target is operational for ships
+ # Bug fix: Healers that are destroyed while healing no longer crash the game
+ # Bug Fix: If more healers are working on a ship at once, it will heal faster because they will all contribute seperately
+ # Bug Fix: The game no longer crashes when a ship is destroyed
+ £ TODO: Healer target and turret target methods only work when targeting ships. These will need to be compatible
+ 		 with all objects (walls, etc.) eventually.
+
+Asteroids RTS Intial 0.3.3.2
+ £ Bug: turrets aparrantly still shoot at the spot where their target was killed or deleted, even after all enemy ships are gone
+ £ Bug: selected walls still have no means of centering the selection circle on them
+ # Healers can now be selected
+ # Walls can now be selected
+ # Added removeHealer and removeWall methods
+ # Units can now be deleted with the "Delete" key while selected
+ # Health is now displayed for selected walls and healers
+ # Selected ships can be directed to attack specific ships by right clicking on the desired target while a ship is selected. If the
+   desired target is not within range, it moves instead
+
+Asteroids RTS Intial 0.3.3.3
+ # Pressing the ; key will change the art style during a game
+ # Selected healers can be directed to heal a specific target by right clicking on the friendly ship you want it to heal
+ £ Bug: Turrets still shoot at the spot where their target last died when combat ends
+ £ Bug: selected walls still have no means of centering the selection circle on them
+ £ Bug: The game will occasionally crash when a unit is destroyed.
+
+Asteroids RTS Intial 0.3.3.4
+ # Updated the drawSelectedHealth method with the size()-1 trick to reduce crashes
+ # Bug fix: Clicking on overlapping units no longer selects them all
+ # Added a more random selection method to turret target and healer target, to prevent all the turrets from picking the same targets
+ # Bug fix: Healer functions in Paint no longer crash the game when ships are destroyed
+ # Bug fix: Turrets no longer remain shooting if there are no enemy targets left
+ £ Bug: with massive ammounts of ships and objects on the map, movement commands become unresponsive occasionally
+
+Asteroids RTS Intial 0.3.4
+ # Walls have been fixed so their x, y coordinate is centered
+ # Implemented the tier 3 ship (long range, high health, perfect accuracy, slow speed, medium shot speed, large size)
+ # Bug fix: Ordering attacks/heals on specific ships now works even after the screen has panned
+ # Bug fix: Shots now work outside the original applet window and they are deleted when they move outside the map border
+ £ Problem: Star generator
+ £ Bug: Healers might become inactive during a game and remain that way for the rest of the game
+ £ TODO: Screen translations will need to be controlled by WASD and limited to the constraints of the map border.
+         The screen can move beyond the map border with a devmode that will be implemented as well.
+         
+Asteroids RTS Intial 0.4.0
+ # Rewrote star generator to be concise, and cover the entire map
+ # Reorganized the Run for legibility and organization
+ # Removed test objects from Init()
+ # Renamed 'Chunk' to 'Sector'
+ # Renamed 'Outpost' to 'Station'
+ # Renamed 'Farm' to 'Refinery'
+     #NOTE: These purely reflect my desire to have more space-like class/object names; we can always change them back if you don't like them
+ # Deleted Base.java in favor of all-in-one Outpost.java [Note: now Station.java] (Mothership.java still needed, as it will have much more functionality)
+ # Changed the default key to delete a unit to 'backspace' (keycode 8)
+ # Adjusted values for turn speed for T1, T2, and T3 to be more accurate in relation to their size
+ # Added developer boolean enableMoveAndTurn, which toggles ships being able to turn as they move towards their waypoint
+ # Changed the default artstyle to the dark theme
+ # Renamed 'Animation' to 'Explosion'
+ # Implemented explosions
+ # Added restrictions disallowing the viewpoint to move beyond the map boundary
+ £ Bug: Panning the map with a mouse is a bit off due to map boundary checks
+ £ Bug: The game still occasionally crashes without reason
+      #NOTE: This seems somewhat contained to ship movement
+ # Added a MapX and MapY drawString() to display the map coordinates alongside the window coordinates
+ # Deleted 'Healthbar' and instead implemented the code directly into 'Ship'
+ # Fully implemented healthbars that show selected ships and display health graphically
+ # Removed the ability to create a T2 ship with the middle mouse button/scroll wheel
+ # Restricted ability to pan the map to holding the middle mouse button/scroll wheel
+ # Changed the color of the line connecting a blue ship to its waypoint to the correct color of blue
+ # Added WASD camera movement
+ £ Bug: WASD camera controls extremely unrefined; possibly unneeded feature since mouse panning is restricted to the middle mouse button/scroll wheel...
+ £ Bug: Waypoints cannot be set after placing walls, and sometimes after attempting to select a unit while it is moving
+ # Changed the value of the red color to RGB value (255, 0, 25)
+ # Reorganized the Draw() method to account for the fog of war
+ £ Bug: Because the shots are double buffered, they are not able to be placed below the fog.
+ # Implemented the fog of war
+     #NOTE: This at this moment in time is purely cosmetic. Ships may still target enemy ships outside their sight radius.
+     #NOTE: This is my favorite feature at the moment :D
+ # Implemented a selection radius to ships, to make them easier to select
+     #NOTE: Need to implement selection radius AND a healthbar for walls and other structures
+     
+==================================================================================================================================
+
+Asteroids RTS Indev 0.1
+ # Created the abstract Entity class to base many objects off of
+ # Created the abstract Unit class to create a foundation for all structures, ships, etc.
+ # Created the abstract Effect class for all non-collidable objects such as Turret, Indicator, etc.
+ # Created the abstract Projectile class to replace shots
+ # Created the Shot class, the first implementation of the Projectile
+
+Asteroids RTS Indev 0.2
+ # Added the Laser class as an extension of Projectile for testing purposes
+ # Removed shoot() method for all units
+ # Commented out all dealings with stars
+ # Successfully created Shot and Laser test objects
+ # Implemented walls
+ # Implemented collisions with only two short methods
+ # Implemented a makeshift explosion class with a single arrayList
+ # Added display for map coordinates in addition to mouse coordinates
+ # Chunks are black with green outline, and the background behind the chuncks is yellow
+ # Implemented screen panning with the mouse wheel button (BUTTON 2)
+
+Asteroids RTS Indev 0.3
+ # MouseX/Y are the coordinates of the mouse in the applet window. MapX/Y are the coordinates of the mouse in the game area
+ # Debugged collision methods
+ # Implemented turrets as an extension of Effect. Fire() method used to shoot any type of projectile rather than shootRed() and shootBlue()
+ # Created HashMaps for <Unit, Turret>, so that all units have turrets bound to them. This will simplify matters in the case of ships and sentries, which have
+   turrets bound to them. NOT YET IMPLEMENTED OR USED. Turrets only function if they are "used", so that wasted turrets on walls, ect. will not shoot.
+ # Pressing 6 creates a shot, and 7 creates a laser
+
+Asteroids RTS Indev 0.4
+ # Removed HashMaps. Those were never a good idea.
+ # Fixed a bug where turrets kept shooting after their target was destroyed with the resetTurrets() method
+ # Implemented Sentry.java as a default Unit. The turret on each sentry is a seperate object
+ # Implemented Turret.java and re-used the turretTarget methods from the older versions. There is no way around that.
+ # Created removeSentry and createSentry methods to deal with turrets
+ # Press 5 to create a sentry
+ # Removed test objects
+ # Removed Chunk.java entirely
+ # Removed Star.java entirely
+ # Corrected shotlife for lasers and shots created by the user
+ # Implemented Sonar.java with animation. It serves no purpose because there is no FOW
+
+Asteroids RTS Indev 0.5
+ # Increased the sonar ping delay
+ # Implemented Ship.java
+ # Implemented Scout.java (the tier 1 ship)
+ # Thickened lasers by 1 pixel
+ # Implemented mouse selections (No health display yet)
+ # Implemented Ship movement
+ # Waypoints are only drawn for the player's team
+ # Fixed crash bug with waypoints in removeSentry
+ # Created removeUnit method to fix crash bug
+ # When switching teams, all units are automatically deselected
+ # Turret binding fixed by removing bindTurrets() and including the proper code in the main shipMovement methods
+ # Fixed crash bug where moving ships were destroyed
+ # Added drawAllWaypoints public static. When false, only the waypoint of a moving selected ship is drawn
+
+Asteroids RTS Indev 0.5.1
+ # Implemented control mode, when an already-selected ship OR sentry is clicked on
+ # holding W,A,D,SPACE controls your unit
+ # Press ESC to exit control mode
+ # No other key or mouse functions can be used while in control mode
+
+Asteorids RTS Indev 0.6
+ £ Problem: Beauty of abstract classes makes me cry too much, impeding on productivity
+ # Passively aggressively changed default textureMode to 0
+ # Created Sector.java, contains variables for tracking what bases (if any) it contains, as well as if that sector is a combat 'hotspot'
+   for use with the work-in-progress minimap
+ # Removed 1000 lines of unused code from AsteroidsRTS.java
+ # Readded stars
+ £ Problem: Even when removing all stars and instaniating only one sector, the game lags considerably when 40~ ships are on screen,
+            a much lower amount than in previous versions and even when just idling. FPS lag unaffected by panning to an area of
+            the map without ships.
+ # Readded fog
+ # Implemented non-deprecated methods for suspending the thread while a ship is created using 'synchronized'
+ # Implemented method to check if a given entity was within the viewWindow (applet window), used to only draw entities
+   that the player can see on screen, helping to reduce lag when there are many units elsewhere on the map. (Note: this
+   produced an excellent raise in FPS even with tens of thousands of stars in the map)
+ # Implemented methods to arrange sector 2D array into a grid in init()
+ # Created GUI.java and Minimap.java as proof of concepts, will later be fleshed out much more
+ # Added a debug bar to the top of the window. Ought to be made into a devMode variable in AsteroidsRTS.java
+ 
+Asteroids RTS Indev 0.6.1
+ # Readded old changelogs for posterity's sake, and also added names to differentiate between different development stages
+ # Reimplemented healthbars
+ # Removed small, green selection circle from all units now with a healthbar
+ £ Bug: Red circle representing the base of a Sentry is now invisible
+ £ Bug: Zoom no longer works, even if enabled
+ £ Bug: doInstantStarts/Stops no longer works as intended, only serves to slow ships down tremendously
+ 
